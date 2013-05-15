@@ -1,23 +1,23 @@
 {
-  "name": "grunt-base64",
+  "name": "grunt-datauri",
   "description": "create base64 encoded data-uris for css from images",
   "version": "0.1.0",
-  "homepage": "https://github.com/ceee/grunt-base64",
+  "homepage": "https://github.com/ceee/grunt-datauri",
   "author": {
     "name": "Tobias Klika",
     "url": "http://ceecore.com"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/ceee/grunt-base64.git"
+    "url": "git://github.com/ceee/grunt-datauri.git"
   },
   "bugs": {
-    "url": "https://github.com/ceee/grunt-base64/issues"
+    "url": "https://github.com/ceee/grunt-datauri/issues"
   },
   "licenses": [
     {
       "type": "MIT",
-      "url": "https://github.com/ceee/grunt-base64/blob/master/LICENSE-MIT"
+      "url": "https://github.com/ceee/grunt-datauri/blob/master/LICENSE-MIT"
     }
   ],
   "main": "Gruntfile.js",

@@ -1,6 +1,6 @@
 /*
- * grunt-base64
- * https://github.com/ceee/grunt-base64
+ * grunt-datauri
+ * https://github.com/ceee/grunt-datauri
  *
  * Copyright (c) 2013 Tobias Klika
  * Licensed under the MIT license.
@@ -31,7 +31,7 @@ module.exports = function (grunt) {
     },
     
     // Configuration to be run (and then tested).
-    base64: {
+    datauri: {
       default: {
 				options: {
 					test: true
@@ -58,5 +58,5 @@ module.exports = function (grunt) {
   
   grunt.registerTask('test', [ 'clean', 'mkdir:tmp', 'nodeunit', 'clean' ]);
   
-  grunt.registerTask('default', [ 'test', 'base64' ]);
+  grunt.registerTask('default', [ 'test', 'datauri' ]);
 };
