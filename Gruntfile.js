@@ -10,6 +10,7 @@
 
 module.exports = function (grunt) {
   grunt.initConfig({
+    
     jshint: {
       all: [
         'Gruntfile.js',
@@ -20,11 +21,29 @@ module.exports = function (grunt) {
         jshintrc: '.jshintrc'
       }
     },
+    
     clean: {
       test: ['tmp']
     },
+    
     nodeunit: {
       tasks: ['test/*_test.js']
+    },
+    
+    // Configuration to be run (and then tested).
+    base64: {
+      default: {
+				options: {
+					test: true
+				},
+				src: [
+					"test/fixtures/test-png.png",
+					"test/fixtures/test-gif.gif",
+					"test/fixtures/test-jpg.jpg",
+					"test/fixtures/test-bmp.bmp"
+				],
+				dest: "tmp/base64.css"
+			}
     }
   });
 
@@ -34,11 +53,10 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-nodeunit');
   grunt.loadNpmTasks('grunt-contrib-internal');
-  grunt.loadNpmTasks('grunt-base64');
 
   grunt.registerTask('mkdir', grunt.file.mkdir);
-
+  
   grunt.registerTask('test', [ 'clean', 'mkdir:tmp', 'nodeunit', 'clean' ]);
-
+  
   grunt.registerTask('default', [ 'test', 'base64' ]);
 };

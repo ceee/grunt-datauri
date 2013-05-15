@@ -28,7 +28,8 @@
     "test": "grunt test"
   },
   "dependencies": {
-  	"filesize": "~1.7.9"
+  	"filesize": "~1.7.9",
+  	"datauri": "~0.2.0"
   },
   "devDependencies": {
     "grunt-contrib-internal": "~0.4.3",
