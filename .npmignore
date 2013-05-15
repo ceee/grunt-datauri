@@ -1,0 +1,4 @@
+.npmignore
+.editorconfig
+test
+Grunfile.js
