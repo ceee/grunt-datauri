@@ -1,3 +1,5 @@
+> *NOTE:* couldn't submit task to grunt yet, as they are currently down ...
+
 # grunt-datauri
 
 > create base64 encoded data-uris for css from images
