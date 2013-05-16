@@ -34,7 +34,7 @@ module.exports = function (grunt) {
     datauri: {
       default: {
 				options: {
-					test: true
+					classPrefix: 'data-'
 				},
 				src: [
 					"test/fixtures/test-png.png",
@@ -60,7 +60,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('mkdir', grunt.file.mkdir);
   
-  grunt.registerTask('test', [ 'clean', 'mkdir:tmp', 'nodeunit', 'clean' ]);
+  grunt.registerTask('test', [ 'clean', 'mkdir:tmp', 'datauri', 'nodeunit', 'clean' ]);
   
-  grunt.registerTask('default', [ 'test', 'datauri' ]);
+  grunt.registerTask('default', [ 'datauri' ]);
 };
