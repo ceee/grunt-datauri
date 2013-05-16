@@ -42,7 +42,11 @@ module.exports = function (grunt) {
 					"test/fixtures/test-jpg.jpg",
 					"test/fixtures/test-bmp.bmp"
 				],
-				dest: "tmp/base64.css"
+				dest: [
+					"tmp/base64.css",
+					"tmp/base64.sass",
+					"tmp/base64.scss"
+				]
 			}
     }
   });
