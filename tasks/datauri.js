@@ -21,21 +21,29 @@ module.exports = function (grunt)
 		sass: '%{{class}}\n\tbackground-image: url("{{data}}")',
 		default: '.{{class}} {\n\tbackground-image: url("{{data}}");\n}'
 	};
+	
+	// filesize is only critical for IE8
+	// as mentioned by Chris Coyier: http://css-tricks.com/data-uris/
+	var UNCRITICAL_FILE_SIZE = 32768;
 
+	
+	
 	grunt.registerMultiTask('datauri', 'create base64 encoded data-uris for css from images', function ()
 	{
 		var options = this.options({
 			classPrefix: '',
-			classSuffix: ''
+			classSuffix: '',
+			checkFilesize: true
 		});
 
 
 		this.files.forEach(function(f)
 		{
 			// filter valid files and map data uri generation
-			var data = f.src.filter( fileExists ).map( generateData );
+			var data = f.src.filter( fileChecks ).map( generateData );
 			var destinationFiles = typeof f.dest === 'string' ? [ f.dest ] : f.dest;
 			var css;
+			var result = [];
 
 			destinationFiles.forEach(function(dest)
 			{
@@ -46,9 +54,11 @@ module.exports = function (grunt)
 
 				// Write the destination file.
 				grunt.file.write(dest, css);
-
-				grunt.log.writeln('File "' + dest + '" created.');
+				
+				result.push( dest );
 			});
+			
+			grunt.log.writeln('Files [ ' + result.join(', ') + ' ] created');
 		});
 
 
@@ -57,10 +67,9 @@ module.exports = function (grunt)
 		function generateData( filepath )
 		{
 			var dataObj = new datauri( filepath );
-			var base64 = dataObj.content;
-
+			
 			return {
-				data: base64,
+				data: dataObj.content,
 				path: filepath
 			};
 		}
@@ -80,14 +89,26 @@ module.exports = function (grunt)
 
 		// Warn on and remove invalid source files (if nonull was set).
 		// ~~~~~~~~~~~~~~~~~~~~~
-		function fileExists( filepath )
+		function fileChecks( filepath )
 		{
+			// check if file exists
 			if (!grunt.file.exists(filepath))
 			{
-				grunt.log.warn('source file "' + filepath + '" not found.');
+				grunt.log.warn('Source file "' + filepath + '" not found');
 				return false;
 			}
-
+			
+			if(options.checkFilesize)
+			{
+				// check for size
+				var stats = fs.lstatSync( filepath );
+				
+				if(stats.size > UNCRITICAL_FILE_SIZE)
+				{
+					grunt.log.warn('uncritical datauri size (' + filesize(UNCRITICAL_FILE_SIZE) + ') exceeded: ' + filepath + ' (' + filesize(stats.size) + ')');
+				}
+			}
+			
 			return true;
 		}
 	});

@@ -42,8 +42,11 @@ Default value: `""`
 
 This `string` is suffixed to all generated class names.
 
-### Options (Files)
+#### options.checkFilesize
+Type: `Boolean`
+Default value: `true`
 
+`checkFilesize` outputs warnings, if a source image exceeds 32kB of size (as this is the maximum for IE8 to function).
 
 #### src
 Type: `String` or `Array`
@@ -118,6 +121,8 @@ _tmp/base64.sass_
 ```
 
 ## Release History
+* 2013-05-17      v0.3.0      filesize check and updated console output
+* 2013-05-16      v0.2.1      bump version for npm
 * 2013-05-16      v0.2.0      add placeholder (sass) support and support for multiple dest-files
 * 2013-05-15      v0.1.0      basic functionality
 
