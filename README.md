@@ -48,6 +48,12 @@ Default value: `true`
 
 `checkFilesize` outputs warnings, if a source image exceeds 32kB of size (as this is the maximum for IE8 to function).
 
+#### options.usePlaceholder
+Type: `Boolean`
+Default value: `true`
+
+Output as [placeholders](http://sass-lang.com/docs/yardoc/file.SASS_REFERENCE.html#placeholder_selectors_) or simple CSS classes - for SASS/SCSS only.
+
 #### src
 Type: `String` or `Array`
 
@@ -121,6 +127,7 @@ _tmp/base64.sass_
 ```
 
 ## Release History
+* 2013-05-26      v0.3.1      toggle for usage of placeholders
 * 2013-05-17      v0.3.0      filesize check and updated console output
 * 2013-05-16      v0.2.1      bump version for npm
 * 2013-05-16      v0.2.0      add placeholder (sass) support and support for multiple dest-files

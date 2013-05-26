@@ -16,24 +16,27 @@ module.exports = function (grunt)
 	var filesize = require('filesize');
 	var datauri = require('datauri');
 
+  // templates to generate CSS classes
 	var cssTemplates = {
 		scss: '%{{class}} {\n\tbackground-image: url("{{data}}");\n}',
 		sass: '%{{class}}\n\tbackground-image: url("{{data}}")',
+    sass_no: '.{{class}}\n\tbackground-image: url("{{data}}")',
 		default: '.{{class}} {\n\tbackground-image: url("{{data}}");\n}'
 	};
-	
+
 	// filesize is only critical for IE8
 	// as mentioned by Chris Coyier: http://css-tricks.com/data-uris/
 	var UNCRITICAL_FILE_SIZE = 32768;
 
-	
-	
+
+
 	grunt.registerMultiTask('datauri', 'create base64 encoded data-uris for css from images', function ()
 	{
 		var options = this.options({
 			classPrefix: '',
 			classSuffix: '',
-			checkFilesize: true
+			checkFilesize: true,
+      usePlaceholder: true
 		});
 
 
@@ -54,10 +57,10 @@ module.exports = function (grunt)
 
 				// Write the destination file.
 				grunt.file.write(dest, css);
-				
+
 				result.push( dest );
 			});
-			
+
 			grunt.log.writeln('Files [ ' + result.join(', ') + ' ] created');
 		});
 
@@ -67,7 +70,7 @@ module.exports = function (grunt)
 		function generateData( filepath )
 		{
 			var dataObj = new datauri( filepath );
-			
+
 			return {
 				data: dataObj.content,
 				path: filepath
@@ -79,9 +82,12 @@ module.exports = function (grunt)
 		// ~~~~~~~~~~~~~~~~~~~~~
 		function generateCss( filepath, data )
 		{
-			var filetype = filepath.split( "." ).pop().toLowerCase();
-			var className = options.classPrefix + path.basename( data.path ).split( "." )[0] + options.classSuffix;
-			var template = cssTemplates[ filetype ] || cssTemplates.default;
+			var filetype = filepath.split( '.' ).pop().toLowerCase();
+			var className, template;
+
+      className = options.classPrefix + path.basename( data.path ).split( '.' )[0] + options.classSuffix;
+      filetype = options.usePlaceholder ? filetype : filetype + '_no';
+			template = cssTemplates[ filetype ] || cssTemplates.default;
 
 			return template.replace( '{{class}}', className ).replace( '{{data}}', data.data );
 		}
@@ -97,18 +103,18 @@ module.exports = function (grunt)
 				grunt.log.warn('Source file "' + filepath + '" not found');
 				return false;
 			}
-			
+
 			if(options.checkFilesize)
 			{
 				// check for size
 				var stats = fs.lstatSync( filepath );
-				
+
 				if(stats.size > UNCRITICAL_FILE_SIZE)
 				{
 					grunt.log.warn('uncritical datauri size (' + filesize(UNCRITICAL_FILE_SIZE) + ') exceeded: ' + filepath + ' (' + filesize(stats.size) + ')');
 				}
 			}
-			
+
 			return true;
 		}
 	});
