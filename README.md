@@ -135,4 +135,6 @@ _tmp/base64.sass_
 
 
 ## Contributors
-* [@ceee](https://github.com/ceee) Tobias Klika
+| [![twitter/artistandsocial](http://gravatar.com/avatar/9c61b1f4307425f12f05d3adb930ba66?s=70)](http://twitter.com/artistandsocial "Follow @artistandsocial on Twitter") |
+|---|
+| [Tobias Klika @ceee](https://github.com/ceee) |
