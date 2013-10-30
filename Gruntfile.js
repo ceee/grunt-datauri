@@ -49,6 +49,23 @@ module.exports = function (grunt) {
           "tmp/base64.sass",
           "tmp/base64.scss"
         ]
+      },
+
+      variables_option: {
+        options: {
+          classPrefix: 'data-',
+          variables: true
+        },
+        src: [
+          "test/fixtures/test-png.png",
+          "test/fixtures/test-gif.gif",
+          "test/fixtures/test-jpg.jpg",
+          "test/fixtures/test-bmp.bmp"
+        ],
+        dest: [
+          "tmp/base64.variables.scss",
+          "tmp/base64.variables.sass"
+        ]
       }
     }
   });

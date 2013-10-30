@@ -16,12 +16,13 @@ module.exports = function (grunt)
 	var filesize = require('filesize');
 	var datauri = require('datauri');
 
-  // templates to generate CSS classes
+  // templates to generate CSS classes, placeholder selectors, or variables
 	var cssTemplates = {
 		scss: '%{{class}} {\n\tbackground-image: url("{{data}}");\n}',
 		sass: '%{{class}}\n\tbackground-image: url("{{data}}")',
     sass_no: '.{{class}}\n\tbackground-image: url("{{data}}")',
-		default: '.{{class}} {\n\tbackground-image: url("{{data}}");\n}'
+		default: '.{{class}} {\n\tbackground-image: url("{{data}}");\n}',
+		variables: '${{class}}: "{{data}}";'
 	};
 
 	// filesize is only critical for IE8
@@ -36,7 +37,8 @@ module.exports = function (grunt)
 			classPrefix: '',
 			classSuffix: '',
 			checkFilesize: true,
-      usePlaceholder: true
+      usePlaceholder: true,
+      variables: false
 		});
 
 
@@ -87,7 +89,11 @@ module.exports = function (grunt)
 
       className = options.classPrefix + path.basename( data.path ).split( '.' )[0] + options.classSuffix;
       filetype = options.usePlaceholder ? filetype : filetype + '_no';
-			template = cssTemplates[ filetype ] || cssTemplates.default;
+      if(options.variables) {
+      	template = cssTemplates.variables;
+      } else {
+      	template = cssTemplates[ filetype ] || cssTemplates.default;
+      }
 
 			return template.replace( '{{class}}', className ).replace( '{{data}}', data.data );
 		}

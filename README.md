@@ -54,6 +54,12 @@ Default value: `true`
 
 Output as [placeholders](http://sass-lang.com/docs/yardoc/file.SASS_REFERENCE.html#placeholder_selectors_) or simple CSS classes - for SASS/SCSS only.
 
+#### options.variables
+Type: `Boolean`
+Default value: `false`
+
+Output as [variables](http://sass-lang.com/documentation/file.SASS_REFERENCE.html#variables_) for SASS/SCSS only.
+
 #### src
 Type: `String` or `Array`
 
