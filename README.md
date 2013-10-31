@@ -24,7 +24,7 @@ grunt.loadNpmTasks('grunt-datauri');
 ### Overview
 The _datauri_ task let's you create css datauri's from images. Supported for all image types. Tested are `png`, `jpg`, `gif`, `bmp`.
 
-If you specify `sass` or `scss` files as destination, than [sass placeholders](http://sass-lang.com/docs/yardoc/file.SASS_REFERENCE.html#placeholder_selectors_) are used instead of classes.
+If you specify `sass` or `scss` files as destination, than [Sass placeholders](http://sass-lang.com/docs/yardoc/file.SASS_REFERENCE.html#placeholder_selectors_) are used instead of classes.
 
 The class names are generated from the filename. You can specify prefix and suffix for these names.
 
@@ -52,13 +52,13 @@ Default value: `true`
 Type: `Boolean`
 Default value: `true`
 
-Output as [placeholders](http://sass-lang.com/docs/yardoc/file.SASS_REFERENCE.html#placeholder_selectors_) or simple CSS classes - for SASS/SCSS only.
+Output as [placeholders](http://sass-lang.com/docs/yardoc/file.SASS_REFERENCE.html#placeholder_selectors_) or simple CSS classes - for Sass only.
 
 #### options.variables
 Type: `Boolean`
 Default value: `false`
 
-Output as [variables](http://sass-lang.com/documentation/file.SASS_REFERENCE.html#variables_) for SASS/SCSS only.
+Output as [variables](http://sass-lang.com/documentation/file.SASS_REFERENCE.html#variables_) for Sass only.
 
 #### src
 Type: `String` or `Array`
@@ -133,14 +133,15 @@ _tmp/base64.sass_
 ```
 
 ## Release History
+* 2013-10-31      v0.3.2      option to save output to Sass variables
 * 2013-05-26      v0.3.1      toggle for usage of placeholders
 * 2013-05-17      v0.3.0      filesize check and updated console output
 * 2013-05-16      v0.2.1      bump version for npm
-* 2013-05-16      v0.2.0      add placeholder (sass) support and support for multiple dest-files
+* 2013-05-16      v0.2.0      add placeholder (Sass) support and support for multiple dest-files
 * 2013-05-15      v0.1.0      basic functionality
 
 
 ## Contributors
-| [![twitter/artistandsocial](http://gravatar.com/avatar/9c61b1f4307425f12f05d3adb930ba66?s=70)](http://twitter.com/artistandsocial "Follow @artistandsocial on Twitter") |
-|---|
-| [Tobias Klika @ceee](https://github.com/ceee) |
+| [![ceee](http://gravatar.com/avatar/9c61b1f4307425f12f05d3adb930ba66?s=70)](https://github.com/ceee "Tobias Klika") | [![davemo](http://gravatar.com/avatar/ead076bf445f9b50e3c094300e4690e9?s=70)](https://github.com/davemo "David Mosher") |
+|---|---|
+| [ceee](https://github.com/ceee) | [davemo](https://github.com/davemo) |
