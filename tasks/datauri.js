@@ -85,13 +85,18 @@ module.exports = function (grunt)
 		function generateCss( filepath, data )
 		{
 			var filetype = filepath.split( '.' ).pop().toLowerCase();
-			var className, template;
+			var className;
+			var template;
 
       className = options.classPrefix + path.basename( data.path ).split( '.' )[0] + options.classSuffix;
       filetype = options.usePlaceholder ? filetype : filetype + '_no';
-      if(options.variables) {
+
+      if (options.variables) 
+      {
       	template = cssTemplates.variables;
-      } else {
+      } 
+      else 
+      {
       	template = cssTemplates[ filetype ] || cssTemplates.default;
       }
 
