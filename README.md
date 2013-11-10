@@ -145,5 +145,5 @@ _tmp/base64.sass_
 
 ## Contributors
 | [![ceee](http://gravatar.com/avatar/9c61b1f4307425f12f05d3adb930ba66?s=70)](https://github.com/ceee "Tobias Klika") | [![davemo](http://gravatar.com/avatar/ead076bf445f9b50e3c094300e4690e9?s=70)](https://github.com/davemo "David Mosher") | [![heldr](http://gravatar.com/avatar/63fb620ee7d14fc91030d4349d189b3e?s=70)](https://github.com/heldr "Helder Santana") |
-|---|---|
+|---|---|---|
 | [ceee](https://github.com/ceee) | [davemo](https://github.com/davemo) | [heldr](https://github.com/heldr) |
