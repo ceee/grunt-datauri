@@ -2,6 +2,7 @@
 
 > create base64 encoded data-uris for css from images
 
+This plugin is based on the great npm module _datauri_ by Helder Santana ([heldr](https://github.com/heldr)).
 
 
 ## Getting Started
@@ -133,6 +134,7 @@ _tmp/base64.sass_
 ```
 
 ## Release History
+* 2013-11-11      v0.4.0      update datauri dependency
 * 2013-10-31      v0.3.2      option to save output to Sass variables
 * 2013-05-26      v0.3.1      toggle for usage of placeholders
 * 2013-05-17      v0.3.0      filesize check and updated console output
@@ -142,6 +144,6 @@ _tmp/base64.sass_
 
 
 ## Contributors
-| [![ceee](http://gravatar.com/avatar/9c61b1f4307425f12f05d3adb930ba66?s=70)](https://github.com/ceee "Tobias Klika") | [![davemo](http://gravatar.com/avatar/ead076bf445f9b50e3c094300e4690e9?s=70)](https://github.com/davemo "David Mosher") |
+| [![ceee](http://gravatar.com/avatar/9c61b1f4307425f12f05d3adb930ba66?s=70)](https://github.com/ceee "Tobias Klika") | [![davemo](http://gravatar.com/avatar/ead076bf445f9b50e3c094300e4690e9?s=70)](https://github.com/davemo "David Mosher") | [![heldr](http://gravatar.com/avatar/63fb620ee7d14fc91030d4349d189b3e?s=70)](https://github.com/heldr "Helder Santana") |
 |---|---|
-| [ceee](https://github.com/ceee) | [davemo](https://github.com/davemo) |
+| [ceee](https://github.com/ceee) | [davemo](https://github.com/davemo) | [heldr](https://github.com/heldr) |

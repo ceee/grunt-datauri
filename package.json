@@ -1,7 +1,7 @@
 {
   "name": "grunt-datauri",
   "description": "create base64 encoded data-uris for css from images",
-  "version": "0.3.2",
+  "version": "0.4.0",
   "homepage": "https://github.com/ceee/grunt-datauri",
   "author": {
     "name": "Tobias Klika",
