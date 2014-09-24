@@ -30,9 +30,7 @@
   "dependencies": {
     "datauri": "~0.3.0",
     "filesize": "~1.7.9",
-    "gm": "^1.16.0",
-    "image-size": "^0.3.3",
-    "read-image-size-promise": "^0.1.0"
+    "image-size": "^0.3.3"
   },
   "devDependencies": {
     "grunt-contrib-internal": "~0.4.3",

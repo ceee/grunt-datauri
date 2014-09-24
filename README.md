@@ -106,9 +106,9 @@ grunt.initConfig( {
 		default: {
 			options: {
 				classPrefix: 'data-',
-                width: true,
-                height: true,
-                repeat: 'no-repeat'
+				width: true,
+				height: true,
+				repeat: 'no-repeat'
 			},
 			src: [
 				"test/fixtures/test-png.png",
@@ -132,15 +132,15 @@ _tmp/base64.css_
 ```css
 .data-test-png {
 	background-image: url("data:image/png;base64,iVBORw0KGgoAAAAN.....");
-    background-repeat: no-repeat;
-    width: 100px;
-    heigth: 100px;
+	background-repeat: no-repeat;
+	width: 100px;
+	heigth: 100px;
 }
 .data-test-gif {
 	background-image: url("data:image/png;base64,R0lGODlhZABkAJEA.....");
-    background-repeat: no-repeat;
-    width: 100px;
-    heigth: 100px;
+	background-repeat: no-repeat;
+	width: 100px;
+	heigth: 100px;
 }
 ...
 ```
@@ -149,9 +149,9 @@ _tmp/base64.scss_
 ```scss
 %data-test-png {
 	background-image: url("data:image/png;base64,iVBORw0KGgoAAAAN.....");
-    background-repeat: no-repeat;
-    width: 100px;
-    heigth: 100px;
+	background-repeat: no-repeat;
+	width: 100px;
+	heigth: 100px;
 }
 ...
 ```
@@ -160,9 +160,9 @@ _tmp/base64.sass_
 ```scss
 %data-test-png
 	background-image: url("data:image/png;base64,iVBORw0KGgoAAAAN.....")
-    background-repeat: no-repeat
-    width: 100px
-    heigth: 100px
+	background-repeat: no-repeat
+	width: 100px
+	heigth: 100px
 ...
 ```
 
