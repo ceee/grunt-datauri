@@ -43,7 +43,8 @@ module.exports = function (grunt)
 			width: false,
 			height: false,
 			repeat: false,
-			display: false
+			display: false,
+			retina: false
 		});
 
 
@@ -83,7 +84,8 @@ module.exports = function (grunt)
 			return {
 				data: dataObj.content,
 				path: filepath,
-				dimensions: dimensions
+				width: dimensions.width,
+				height: dimensions.height
 			};
 		}
 
@@ -111,15 +113,19 @@ module.exports = function (grunt)
 				key: 'background-repeat',
 				value: options.repeat
 			});
+			if (options.retina) data.attributes.push({
+				key: 'background-size',
+				value: data.width / 2 + 'px ' + data.height / 2 + 'px'
+			});
 			if (options.width) data.attributes.push({
 				key: 'width',
-				value: data.dimensions.width + 'px'
+				value: data.width + 'px'
 			});
 			if (options.height) data.attributes.push({
 				key: 'height',
-				value: data.dimensions.height + 'px'
+				value: data.height + 'px'
 			});
-			if (options.height) data.attributes.push({
+			if (options.display) data.attributes.push({
 				key: 'display',
 				value: options.display
 			});

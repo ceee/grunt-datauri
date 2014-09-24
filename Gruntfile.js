@@ -56,7 +56,9 @@ module.exports = function (grunt) {
           classPrefix: 'data-',
           repeat: 'no-repeat',
           width: true,
-          height: true
+          height: true,
+          display: 'inline-block',
+          retina: true
         },
         src: [
           "test/fixtures/test-png.png",
