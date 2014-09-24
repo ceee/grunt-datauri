@@ -51,6 +51,26 @@ module.exports = function (grunt) {
         ]
       },
 
+      dimensions: {
+        options: {
+          classPrefix: 'data-',
+          repeat: 'no-repeat',
+          width: true,
+          height: true
+        },
+        src: [
+          "test/fixtures/test-png.png",
+          "test/fixtures/test-gif.gif",
+          "test/fixtures/test-jpg.jpg",
+          "test/fixtures/test-bmp.bmp"
+        ],
+        dest: [
+          "tmp/base64.dimensions.css",
+          "tmp/base64.dimensions.sass",
+          "tmp/base64.dimensions.scss"
+        ]
+      },
+
       variables_option: {
         options: {
           classPrefix: 'data-',
