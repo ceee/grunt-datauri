@@ -49,6 +49,24 @@ Default value: `true`
 
 `checkFilesize` outputs warnings, if a source image exceeds 32kB of size (as this is the maximum for IE8 to function).
 
+#### options.width
+Type: `Boolean`
+Default value: `false`
+
+Output image width for generated classes.
+
+#### options.height
+Type: `Boolean`
+Default value: `false`
+
+Output image height for generated classes.
+
+#### options.repeat
+Type: `String`
+Default value: `""`
+
+Set this `string` as background-repeat value.
+
 #### options.usePlaceholder
 Type: `Boolean`
 Default value: `true`
@@ -87,7 +105,10 @@ grunt.initConfig( {
 	datauri: {
 		default: {
 			options: {
-				classPrefix: 'data-'
+				classPrefix: 'data-',
+				width: true,
+				height: true,
+				repeat: 'no-repeat'
 			},
 			src: [
 				"test/fixtures/test-png.png",
@@ -111,9 +132,15 @@ _tmp/base64.css_
 ```css
 .data-test-png {
 	background-image: url("data:image/png;base64,iVBORw0KGgoAAAAN.....");
+	background-repeat: no-repeat;
+	width: 100px;
+	heigth: 100px;
 }
 .data-test-gif {
 	background-image: url("data:image/png;base64,R0lGODlhZABkAJEA.....");
+	background-repeat: no-repeat;
+	width: 100px;
+	heigth: 100px;
 }
 ...
 ```
@@ -122,6 +149,9 @@ _tmp/base64.scss_
 ```scss
 %data-test-png {
 	background-image: url("data:image/png;base64,iVBORw0KGgoAAAAN.....");
+	background-repeat: no-repeat;
+	width: 100px;
+	heigth: 100px;
 }
 ...
 ```
@@ -129,7 +159,10 @@ _tmp/base64.scss_
 _tmp/base64.sass_
 ```scss
 %data-test-png
-	background-image: url("data:image/png;base64,iVBORw0KGgoAAAAN.....");
+	background-image: url("data:image/png;base64,iVBORw0KGgoAAAAN.....")
+	background-repeat: no-repeat
+	width: 100px
+	heigth: 100px
 ...
 ```
 

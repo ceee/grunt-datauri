@@ -11,18 +11,19 @@
 module.exports = function (grunt)
 {
 	var path = require('path');
+	var imageSize = require('image-size');
 	var fs = require('fs');
 	var childProcess = require('child_process');
 	var filesize = require('filesize');
 	var datauri = require('datauri');
 
   // templates to generate CSS classes, placeholder selectors, or variables
-	var cssTemplates = {
-		scss: '%{{class}} {\n\tbackground-image: url("{{data}}");\n}',
-		sass: '%{{class}}\n\tbackground-image: url("{{data}}")',
-    sass_no: '.{{class}}\n\tbackground-image: url("{{data}}")',
-		default: '.{{class}} {\n\tbackground-image: url("{{data}}");\n}',
-		variables: '${{class}}: "{{data}}";'
+	var templates = {
+		variables: '${class}: "{data}";',
+		scss: '%{class} {\n{attributes}\t{key}: {value};\n{/attributes}}',
+		sass: '%{class}{attributes}\n\t{key}: {value}{/attributes}',
+		sass_no: '{class}{attributes}\n\t{key}: {value}{/attributes}',
+		default: '.{class} {\n{attributes}\t{key}: {value};\n{/attributes}}'
 	};
 
 	// filesize is only critical for IE8
@@ -37,8 +38,13 @@ module.exports = function (grunt)
 			classPrefix: '',
 			classSuffix: '',
 			checkFilesize: true,
-      usePlaceholder: true,
-      variables: false
+			usePlaceholder: true,
+			variables: false,
+			width: false,
+			height: false,
+			repeat: false,
+			display: false,
+			retina: false
 		});
 
 
@@ -49,6 +55,7 @@ module.exports = function (grunt)
 			var destinationFiles = typeof f.dest === 'string' ? [ f.dest ] : f.dest;
 			var css;
 			var result = [];
+
 
 			destinationFiles.forEach(function(dest)
 			{
@@ -72,10 +79,13 @@ module.exports = function (grunt)
 		function generateData( filepath )
 		{
 			var dataObj = new datauri( filepath );
+			var dimensions = imageSize( filepath );
 
 			return {
 				data: dataObj.content,
-				path: filepath
+				path: filepath,
+				width: dimensions.width,
+				height: dimensions.height
 			};
 		}
 
@@ -85,23 +95,62 @@ module.exports = function (grunt)
 		function generateCss( filepath, data )
 		{
 			var filetype = filepath.split( '.' ).pop().toLowerCase();
-			var className;
-			var template;
 
-      className = options.classPrefix + path.basename( data.path ).split( '.' )[0] + options.classSuffix;
-      filetype = options.usePlaceholder ? filetype : filetype + '_no';
+			data.class = options.classPrefix + path.basename( data.path ).split( '.' )[0] + options.classSuffix;
+			filetype = options.usePlaceholder ? filetype : filetype + '_no';
 
-      if (options.variables) 
-      {
-      	template = cssTemplates.variables;
-      } 
-      else 
-      {
-      	template = cssTemplates[ filetype ] || cssTemplates.default;
-      }
+			if (options.variables) 
+			{
+				return render(templates.variables, data);
+			} 
 
-			return template.replace( '{{class}}', className ).replace( '{{data}}', data.data );
+			data.attributes = [{
+				key: 'background-image',
+				value: 'url("'+data.data+'")'
+			}];
+
+			if (options.repeat) data.attributes.push({
+				key: 'background-repeat',
+				value: options.repeat
+			});
+			if (options.retina) { 
+                data.attributes.push({
+                    key: 'background-size',
+                    value: data.width / 2 + 'px ' + data.height / 2 + 'px'
+			    });
+                data.width = data.width / 2;
+                data.height = data.height / 2;
+            }
+			if (options.width) data.attributes.push({
+				key: 'width',
+				value: data.width + 'px'
+			});
+			if (options.height) data.attributes.push({
+				key: 'height',
+				value: data.height + 'px'
+			});
+			if (options.display) data.attributes.push({
+				key: 'display',
+				value: options.display
+			});
+			
+			return render(templates[filetype] || templates.default , data);
+				
 		}
+
+		function render( template, data ) {
+			return template.replace(/{(\w*)}(([\W\w\n]*){\/\1})?/gim, function(m, name, full, template) {
+				if (!template) return data[name];
+
+				var result = '';
+				data[name].forEach(function( data ) {
+					result += render(template, data);
+				});
+
+				return result
+			});
+		} 
+
 
 
 		// Warn on and remove invalid source files (if nonull was set).
