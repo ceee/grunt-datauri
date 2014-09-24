@@ -113,10 +113,14 @@ module.exports = function (grunt)
 				key: 'background-repeat',
 				value: options.repeat
 			});
-			if (options.retina) data.attributes.push({
-				key: 'background-size',
-				value: data.width / 2 + 'px ' + data.height / 2 + 'px'
-			});
+			if (options.retina) { 
+                data.attributes.push({
+                    key: 'background-size',
+                    value: data.width / 2 + 'px ' + data.height / 2 + 'px'
+			    });
+                data.width = data.width / 2;
+                data.height = data.height / 2;
+            }
 			if (options.width) data.attributes.push({
 				key: 'width',
 				value: data.width + 'px'
