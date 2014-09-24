@@ -43,6 +43,7 @@ module.exports = function (grunt)
 			width: false,
 			height: false,
 			repeat: false
+			display: false
 		});
 
 
@@ -117,6 +118,10 @@ module.exports = function (grunt)
 			if (options.height) data.attributes.push({
 				key: 'height',
 				value: data.dimensions.height + 'px'
+			});
+			if (options.height) data.attributes.push({
+				key: 'display',
+				value: options.display
 			});
 			
 			return render(templates[filetype] || templates.default , data);
