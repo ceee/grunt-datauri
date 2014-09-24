@@ -42,7 +42,7 @@ module.exports = function (grunt)
 			variables: false,
 			width: false,
 			height: false,
-			repeat: false
+			repeat: false,
 			display: false
 		});
 
